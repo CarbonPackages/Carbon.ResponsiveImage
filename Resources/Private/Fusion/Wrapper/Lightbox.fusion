@@ -1,0 +1,15 @@
+prototype(Carbon.ResponsiveImage:Wrapper.Lightbox) < prototype(Neos.Fusion:Component) {
+    asset = false
+    config = ${Configuration.setting('Carbon.ResponsiveImage.lightbox')}
+    class = null
+    caption = null
+    content = ${value}
+
+    @if.hasAsset = ${this.asset}
+
+    renderer = Neos.Fusion:Tag {
+        tagName = 'a'
+        attributes = afx`<Carbon.ResponsiveImage:Attributes.Lightbox {...props} />`
+        content = ${props.content}
+    }
+}

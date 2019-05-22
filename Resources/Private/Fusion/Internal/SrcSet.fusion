@@ -1,0 +1,21 @@
+prototype(Carbon.ResponsiveImage:Internal.SrcSet) < prototype(Neos.Fusion:Component) {
+    sizes = null
+    maximumWidth = null
+    width = null
+    maximumScreenDensity = ${Configuration.setting('Carbon.ResponsiveImage.maximumScreenDensity')}
+
+    // Internal 
+    maxSize = ${this.width || this.maximumWidth}
+    maxSizeScreenDensity = ${this.maxSize * this.maximumScreenDensity}
+    range = ${Array.range(1, this.maximumScreenDensity)}
+
+    @if.set = ${this.sizes && this.maxSize && this.maximumScreenDensity}
+
+    renderer = Neos.Fusion:Value {
+        filtered = ${Array.filter(props.sizes, size => size <= props.maxSizeScreenDensity ? true : false)}
+        maxSizeArray = ${Array.map(props.range, density => density * props.maxSize)}
+        concatArray = ${Array.sort(Carbon.Array.unique(Array.concat(this.filtered, this.maxSizeArray)))}
+        // This add the 'w' to every entry
+        value = ${Array.join(this.concatArray, 'w, ') + 'w'}
+    }
+}

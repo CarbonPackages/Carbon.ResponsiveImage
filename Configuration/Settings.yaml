@@ -1,0 +1,48 @@
+Carbon:
+  ResponsiveImage:
+    maximumWidth: 2560
+    placeholderWidth: 96
+    maximumScreenDensity: 2
+    class: lazyload
+    loader:
+      background: false
+      tag: '<i class="loader" aria-hidden="true"></i>'
+    sizesPresets:
+      - 96
+      - 160
+      - 320
+      - 480
+      - 640
+      - 960
+      - 1024
+      - 1440
+      - 1920
+      - 2560
+      - 3840
+      - 5120
+    dummy:
+      backgroundColor: 'f0ad4e'
+      foregroundColor: 'fff'
+      baseWidth: 600
+      baseHeight: 400
+    lightbox:
+      rel: noopener
+      class: lightbox
+      target: _blank
+      async: false
+      allowCropping: false
+      allowUpScaling: false
+      width: false
+      height: false
+      maximumWidth: 5120
+      maximumHeight: 5120
+      preset: false
+
+Neos:
+  Neos:
+    fusion:
+      autoInclude:
+        Carbon.ResponsiveImage: true
+  Fusion:
+    defaultContext:
+      'Carbon.ResponsiveImage.Asset': 'Carbon\ResponsiveImage\Fusion\AssetHelper'

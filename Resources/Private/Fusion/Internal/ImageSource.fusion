@@ -1,0 +1,44 @@
+prototype(Carbon.ResponsiveImage:Internal.ImageSource) < prototype(Neos.Fusion:Component) {
+    asset = null
+    preset = null
+    width = null
+    height = null
+
+    dummy = Neos.Fusion:DataStructure {
+        default = ${Configuration.setting('Carbon.ResponsiveImage.dummy.image')}
+        baseWidth = ${this.default.baseWidth}
+        baseHeight = ${this.default.baseHeight}
+        backgroundColor = ${this.default.backgroundColor}
+        foregroundColor = ${this.default.foregroundColor}
+        text = null
+    }
+
+    // Internal
+    maximumWidth = ${Configuration.setting('Carbon.ResponsiveImage.maximumWidth')}
+    dummyMaxSizeText = ${this.width ? Translation.translate('width', '{0} pixels wide', [this.width], null, 'Carbon.ResponsiveImage') : Translation.translate('maximumWidth', 'Maximal {0} pixels wide', [this.maximumWidth], null, 'Carbon.ResponsiveImage')}
+
+    renderer = Neos.Fusion:Case {
+        hasAsset {
+            condition = ${props.asset}
+            renderer = afx`
+                <Sitegeist.Kaleidoscope:AssetImageSource
+                    asset={props.asset}
+                    preset={props.preset}
+                    width={props.width}
+                    height={props.height} />
+            `
+        }
+        dummyImage {
+            condition = true
+            renderer = afx`
+                <Sitegeist.Kaleidoscope:DummyImageSource
+                    {...props.dummy}
+                    text={props.dummy.text ? props.dummy.text : props.width && props.height ? null : props.dummyMaxSizeText}
+                    preset={props.preset}
+                    width={props.width}
+                    height={props.height} />
+            `
+        }
+    }
+}
+

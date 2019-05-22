@@ -1,0 +1,18 @@
+prototype(Carbon.ResponsiveImage:Wrapper.Link) < prototype(Neos.Fusion:Component) {
+    class = null
+    link = null
+    content = ${value}
+
+    @if.set = ${this.link}
+    renderer = Neos.Fusion:Tag {
+        @if.isValid = Carbon.Link:Valid {
+            link = ${props.link}
+        }
+        tagName = 'a'
+        content = ${props.content}
+        attributes = Carbon.Link:Attributes {
+            link = ${props.link}
+            additionalClass = ${props.class}
+        }
+    }
+}

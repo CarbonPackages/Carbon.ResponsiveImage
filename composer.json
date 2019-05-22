@@ -1,0 +1,49 @@
+{
+    "name": "carbon/responsiveimage",
+    "type": "neos-carbon",
+    "description": "Responsive image helper for Neos CMS",
+    "license": "GPL-3.0-or-later",
+    "keywords": [
+        "flow",
+        "neos",
+        "fusion",
+        "helper",
+        "image",
+        "carbon"
+    ],
+    "require": {
+        "neos/neos": "^4.2",
+        "sitegeist/lazybones": "^1.0",
+        "carbon/link": "^1.0"
+    },
+    "authors": [
+        {
+            "name": "Jon Uhlmann",
+            "email": "me@jonnitto.ch",
+            "homepage": "https://jonnitto.ch",
+            "role": "Developer"
+        }
+    ],
+    "archive": {
+        "exclude": [
+            ".editorconfig",
+            ".gitattributes",
+            ".github",
+            ".gitignore",
+            ".prettierrc",
+            "CODE_OF_CONDUCT.md"
+        ]
+    },
+    "autoload": {
+        "psr-4": {
+            "Carbon\\ResponsiveImage\\": "Classes"
+        }
+    },
+    "extra": {
+        "marketplace-account": "me@jonnitto.ch",
+        "installer-name": "Carbon.ResponsiveImage",
+        "neos": {
+            "package-key": "Carbon.ResponsiveImage"
+        }
+    }
+}

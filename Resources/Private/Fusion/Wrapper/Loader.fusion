@@ -1,0 +1,15 @@
+prototype(Carbon.ResponsiveImage:Wrapper.Loader) < prototype(Neos.Fusion:Component) {
+    loader = ''
+    content = ${value}
+
+    // 'before' or 'after'
+    position = 'after'
+
+    @if.set = ${!!this.loader}
+
+    renderer = afx`
+        {props.position == 'before' ? props.loader : ''}
+        {props.content || ''}
+        {props.position == 'after' ? props.loader : ''}
+    `
+}
