@@ -38,7 +38,7 @@ prototype(Carbon.ResponsiveImage:Background) < prototype(Neos.Fusion:Component) 
     loader = ${Configuration.setting('Carbon.ResponsiveImage.loader.background')}
 
     dummy = Neos.Fusion:DataStructure {
-        default = ${Configuration.setting('Carbon.ResponsiveImage.dummy.image')}
+        default = ${Configuration.setting('Carbon.ResponsiveImage.dummy')}
         baseWidth = ${this.default.baseWidth}
         baseHeight = ${this.default.baseHeight}
         backgroundColor = ${this.default.backgroundColor}
