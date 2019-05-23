@@ -61,11 +61,10 @@ prototype(Carbon.ResponsiveImage:Tag) < prototype(Neos.Fusion:Component) {
         // lazyWidth doesn't work correctly 
         // https://github.com/sitegeist/Sitegeist.Lazybones/issues/1
         lazySrc = ${String.replace(this.image.srcset(props.lazyWidth + 'w'), ' ' + props.lazyWidth + 'w', '')}
-        lazySrc.@if.set = ${props.lazyWidth}
+        lazySrc.@if.set = ${props.lazyWidth && this.image}
 
         renderer = afx`
             <Neos.Fusion:Augmenter
-                data-testsrcset={props.srcset}
                 id={props.id}
                 style={props.style}
                 width={props.width}
