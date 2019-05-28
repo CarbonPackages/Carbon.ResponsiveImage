@@ -61,7 +61,7 @@ prototype(Carbon.ResponsiveImage:Background) < prototype(Neos.Fusion:Component) 
         image = afx`<Carbon.ResponsiveImage:Internal.ImageSource {...props} />`
         srcset = afx`<Carbon.ResponsiveImage:Internal.SrcSet {...props} />`
         spacer = afx`<Carbon.ResponsiveImage:Internal.Spacer {...props} />`
-        needAnchor = ${props.renderLinks && (props.hasLink || props.lightbox)}
+        needAnchor = ${props.renderLinks && (this.hasLink || props.lightbox)}
 
         renderer = Neos.Fusion:Augmenter {
             id = ${props.id}
