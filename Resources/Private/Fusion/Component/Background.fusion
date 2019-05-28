@@ -65,7 +65,7 @@ prototype(Carbon.ResponsiveImage:Background) < prototype(Neos.Fusion:Component) 
 
         renderer = Neos.Fusion:Augmenter {
             id = ${props.id}
-            class = ${Type.isArray(props.class) ? Array.join(props.class, ' ') : props.class}
+            class = ${props.needAnchor ? '' : Type.isArray(props.class) ? Array.join(props.class, ' ') : props.class}
             class.@process.addLazyClass = ${String.trim(value + ' ' + props.lazyClass)}
             title = ${props.needAnchor ? props.title : null}
             style = ${props.style}
