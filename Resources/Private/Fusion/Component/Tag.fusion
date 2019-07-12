@@ -58,11 +58,6 @@ prototype(Carbon.ResponsiveImage:Tag) < prototype(Neos.Fusion:Component) {
         image = afx`<Carbon.ResponsiveImage:Internal.ImageSource {...props} />`
         srcset = afx`<Carbon.ResponsiveImage:Internal.SrcSet {...props} />`
 
-        // lazyWidth doesn't work correctly 
-        // https://github.com/sitegeist/Sitegeist.Lazybones/issues/1
-        lazySrc = ${String.replace(this.image.srcset(props.lazyWidth + 'w'), ' ' + props.lazyWidth + 'w', '')}
-        lazySrc.@if.set = ${props.lazyWidth && this.image}
-
         renderer = afx`
             <Neos.Fusion:Augmenter
                 id={props.id}
@@ -70,10 +65,10 @@ prototype(Carbon.ResponsiveImage:Tag) < prototype(Neos.Fusion:Component) {
                 width={props.width}
                 height={props.height}
                 data-aspectratio={props.ratio}
-                src={props.lazySrc}
             >
                 <Sitegeist.Lazybones:Image
                     lazy={props.lazy}
+                    lazyWidth={props.lazyWidth}
                     lazyClass={props.lazyClass}
                     sizes='auto'
                     alt={props.alternativeText}
