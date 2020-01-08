@@ -17,6 +17,9 @@ prototype(Carbon.ResponsiveImage:Internal.ImageSource) < prototype(Neos.Fusion:C
     maximumWidth = ${Configuration.setting('Carbon.ResponsiveImage.maximumWidth')}
     dummyMaxSizeText = ${this.width ? Translation.translate('width', '{0} pixels wide', [this.width], null, 'Carbon.ResponsiveImage') : Translation.translate('maximumWidth', 'Maximal {0} pixels wide', [this.maximumWidth], null, 'Carbon.ResponsiveImage')}
 
+    resolvedWidth = ${Type.isNumeric(this.width) ? String.toInteger(this.width) : Type.isNumeric(this.height) ? null : String.toInteger(this.maximumWidth)}
+    resolvedHeight = ${Type.isNumeric(this.height) ? String.toInteger(this.height) : null}
+
     renderer = Neos.Fusion:Case {
         hasAsset {
             condition = ${props.asset}
@@ -24,8 +27,9 @@ prototype(Carbon.ResponsiveImage:Internal.ImageSource) < prototype(Neos.Fusion:C
                 <Sitegeist.Kaleidoscope:AssetImageSource
                     asset={props.asset}
                     preset={props.preset}
-                    width={props.width}
-                    height={props.height} />
+                    width={props.resolvedWidth}
+                    height={props.resolvedHeight}
+                />
             `
         }
         dummyImage {
@@ -35,10 +39,10 @@ prototype(Carbon.ResponsiveImage:Internal.ImageSource) < prototype(Neos.Fusion:C
                     {...props.dummy}
                     text={props.dummy.text ? props.dummy.text : props.width && props.height ? null : props.dummyMaxSizeText}
                     preset={props.preset}
-                    width={props.width}
-                    height={props.height} />
+                    width={props.resolvedWidth}
+                    height={props.resolvedHeight}
+                />
             `
         }
     }
 }
-
